@@ -20,6 +20,7 @@ const Auth = () => {
         console.log(form);
     };
 
+
     return (
         <View>
             {hasAcc ? (
