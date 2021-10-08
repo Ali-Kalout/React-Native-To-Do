@@ -2,6 +2,7 @@ import { Router } from 'express';
 import bcrypt from 'bcrypt';
 import User from './../models/user';
 import generateJWT from './../utils/generateJWT';
+import auth from './../middleware/auth';
 
 const router = Router();
 
@@ -26,6 +27,7 @@ router.post('/signup', async (req, res) => {
 
         return res.status(200).json({ token: generateJWT(newUser) });
     } catch (error) {
+        console.log(error);
         return res.status(500).json({ message: error.message });
     }
 });
@@ -45,6 +47,16 @@ router.post('/login', async (req, res) => {
 
         return res.status(200).json({ token: generateJWT(user) });
     } catch (error) {
+        return res.status(500).json({ message: error.message });
+    }
+});
+
+router.get('/', auth, async (req: any, res: any) => {
+    try {
+        const user = await User.findById(req?.userId);
+        return res.status(200).json({ user: { username: user.username } });
+    } catch (error) {
+        console.log(error);
         return res.status(500).json({ message: error.message });
     }
 });

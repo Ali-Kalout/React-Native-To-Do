@@ -3,16 +3,16 @@ import { View, Text } from 'react-native';
 import { Title, TextInput, Button } from 'react-native-paper';
 import styles from './../../styles/index';
 import { authForm } from './../../pages/Auth';
+import { useSelector } from 'react-redux';
 
 interface Props {
     handleSignup: (signupForm: authForm) => void;
 };
 
-const error = false; // static till now
-
 const Signup: FC<Props> = ({ handleSignup }) => {
-    const [signupForm, setSignupForm] = useState<authForm>({ username: '', password: '' });
+    const [signupForm, setSignupForm] = useState<any>({ username: '', password: '' });
     const [confirmPass, setConfirmPass] = useState<string>('');
+    const { error, loading } = useSelector((state: any) => state.auth);
 
     return (
         <View>
@@ -26,10 +26,12 @@ const Signup: FC<Props> = ({ handleSignup }) => {
             <TextInput label="Confirm Password" mode="outlined" value={confirmPass} secureTextEntry={true}
                 onChangeText={text => setConfirmPass(text)}
                 style={styles.input} />
-            {(signupForm?.password !== confirmPass || error) && (
-                <Text style={styles.error}>Passwords don't match!</Text>
+            {(signupForm?.password !== confirmPass || error?.length > 0) && (
+                <Text style={styles.error}>{error?.length > 0 ? error : "Passwords don't match!"}</Text>
             )}
-            <Button style={styles.button} mode="contained" onPress={() => handleSignup(signupForm)}>Signup</Button>
+            <Button style={styles.button} mode="contained" onPress={() => handleSignup(signupForm)} disabled={loading}>
+                {loading ? 'Loading...' : 'Signup'}
+            </Button>
         </View>
     );
 };

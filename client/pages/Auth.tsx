@@ -3,23 +3,24 @@ import { View } from 'react-native';
 import { Button } from 'react-native-paper';
 import Login from './../components/auth/Login';
 import Signup from './../components/auth/Signup';
+import { useDispatch } from 'react-redux';
+import { login, signup } from './../redux/actions/auth';
+import { useHistory } from 'react-router-native';
 
 export interface authForm {
+    token: any;
     username: string;
     password: string;
 };
 
 const Auth = () => {
+    const history = useHistory();
+    const dispatch = useDispatch();
     const [hasAcc, setHasAcc] = useState<Boolean>(true);
 
-    const handleLogin = (form: authForm): void => {
-        console.log(form);
-    };
+    const handleLogin = (form: authForm) => dispatch(login(form, history));
 
-    const handleSignup = (form: authForm): void => {
-        console.log(form);
-    };
-
+    const handleSignup = (form: authForm) => dispatch(signup(form, history));
 
     return (
         <View>

@@ -6,8 +6,9 @@ import userRouter from './routes/user';
 const app = express();
 
 app.use(cors());
+app.use(express.json());
 app.get('/', (_, res) => res.send('Hello World!'));
-app.use('/user', userRouter);
+app.use('/users', userRouter);
 
 mongoose.connect("mongodb://localhost:27017/rn-to-do", {
     useNewUrlParser: true,
