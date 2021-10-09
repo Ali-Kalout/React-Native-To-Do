@@ -2,7 +2,7 @@ import React, { useState, FC } from 'react';
 import { View, Text } from 'react-native';
 import { Title, TextInput, Button } from 'react-native-paper';
 import styles from './../../styles/index';
-import { authForm } from './../../pages/Auth';
+import { authForm } from '../../screens/Auth';
 import { useSelector } from 'react-redux';
 
 interface Props {

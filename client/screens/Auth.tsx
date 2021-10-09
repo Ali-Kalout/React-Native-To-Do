@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { View } from 'react-native';
 import { Button } from 'react-native-paper';
-import Login from './../components/auth/Login';
-import Signup from './../components/auth/Signup';
+import Login from '../components/auth/Login';
+import Signup from '../components/auth/Signup';
 import { useDispatch } from 'react-redux';
-import { login, signup } from './../redux/actions/auth';
+import { login, signup } from '../redux/actions/auth';
 import { useHistory } from 'react-router-native';
 
 export interface authForm {

@@ -15,7 +15,7 @@ export const getUser = () => async (dispatch: any) => {
     }
 }
 
-export const login = (form: any, history: any) => async (dispatch: any) => {
+export const login = (form: any) => async (dispatch: any) => {
     dispatch({ type: actionTypes.START_AUTH });
 
     try {
@@ -28,14 +28,13 @@ export const login = (form: any, history: any) => async (dispatch: any) => {
         });
 
         dispatch(getUser());
-        history?.push('/home');
     } catch (error: any) {
         console.log(error.response.data);
         dispatch({ type: actionTypes.AUTH_FAIL, payload: error.response.data });
     }
 }
 
-export const signup = (form: any, history: any) => async (dispatch: any) => {
+export const signup = (form: any) => async (dispatch: any) => {
     dispatch({ type: actionTypes.START_AUTH });
 
     try {
@@ -48,7 +47,6 @@ export const signup = (form: any, history: any) => async (dispatch: any) => {
         });
 
         dispatch(getUser());
-        history?.push('/home');
     } catch (error: any) {
         console.log(error.response.data);
         dispatch({ type: actionTypes.AUTH_FAIL, payload: error.response.data });
