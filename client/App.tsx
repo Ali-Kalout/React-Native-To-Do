@@ -12,6 +12,7 @@ import { getUser } from './redux/actions/auth';
 import NavBar from './components/layouts/NavBar';
 import Home from './pages/Home';
 import Auth from './pages/Auth';
+import BottomNav from './components/layouts/BottomNav';
 
 const store = configStore();
 
@@ -32,6 +33,8 @@ const App = () => {
 					<Route exact path="/home" component={() => isAuthenticated ? <Home /> : <Redirect to="/" />} />
 				</NativeRouter>
 			</View>
+
+			{isAuthenticated && <BottomNav />}
 		</View>
 	);
 };
