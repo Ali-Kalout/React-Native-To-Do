@@ -1,6 +1,7 @@
 {
 	"expo": {
 		"name": "react-native-app",
+		"userInterfaceStyle": "automatic",
 		"slug": "react-native-app",
 		"version": "1.0.0",
 		"orientation": "portrait",

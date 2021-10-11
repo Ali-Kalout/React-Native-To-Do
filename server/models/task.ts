@@ -5,7 +5,7 @@ const taskSchema = new mongoose.Schema({
         type: String,
         trim: true,
         required: true,
-        maxlength: 30
+        maxlength: 50
     },
     completed: {
         type: Boolean,
@@ -16,6 +16,10 @@ const taskSchema = new mongoose.Schema({
         required: true,
         ref: 'User'
     },
+    dueDate: {
+        type: Date,
+        required: true
+    }
 });
 
 const Task = mongoose.model('Task', taskSchema);

@@ -18,7 +18,7 @@ const App = () => {
 	const dispatch = useDispatch();
 	const { isAuthenticated } = useSelector((state: RootState) => state.auth);
 
-	useEffect(() => dispatch(getUser() as any), []);
+	useEffect(() => { dispatch(getUser() as any) }, []);
 
 	return (
 		<View style={styles.body}>

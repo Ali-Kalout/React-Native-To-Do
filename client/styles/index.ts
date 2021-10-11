@@ -22,11 +22,19 @@ const styles = StyleSheet.create({
 		color: 'red',
 		fontWeight: '500'
 	},
+	caption: {
+		marginTop: -1,
+		marginLeft: 'auto'
+	},
 	container: {
 		flex: 1,
 		marginTop: 20,
 		marginLeft: 20,
 		marginRight: 20
+	},
+	dateBtnContainer: {
+		flexDirection: 'row',
+		justifyContent: 'space-between'
 	}
 });
 
