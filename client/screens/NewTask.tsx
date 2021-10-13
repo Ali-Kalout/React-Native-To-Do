@@ -1,5 +1,5 @@
 import React, { useState, useEffect, FC } from 'react';
-import { View, Text,ScrollView } from 'react-native';
+import { View, Text, ScrollView } from 'react-native';
 import styles from './../styles/index';
 import { TextInput, Button } from 'react-native-paper';
 import DateTimePickerModal from 'react-native-modal-datetime-picker';
@@ -52,8 +52,7 @@ const NewTask: FC<Props> = ({ setIndex }) => {
         <ScrollView keyboardShouldPersistTaps='handled'>
             <Text style={styles.title}>New Task</Text>
             <TextInput label="Task Title" mode="outlined" value={title}
-                onChangeText={text => setTitle(text)} multiline={true}
-                style={styles.input} numberOfLines={3} maxLength={10} />
+                onChangeText={text => setTitle(text)} style={styles.input} maxLength={10} />
             <Text style={styles.caption}>{title?.length} / 10</Text>
             <TextInput label="Task Description" mode="outlined" value={description}
                 onChangeText={text => setDescription(text)} multiline={true}

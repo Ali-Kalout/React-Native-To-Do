@@ -7,6 +7,7 @@ import auth from './../middleware/auth';
 const router = Router();
 
 router.post('/signup', async (req, res) => {
+    console.log(req.body);
     try {
         const { username, password } = req.body;
         const user = await User.findOne({ username });
@@ -54,7 +55,9 @@ router.post('/login', async (req, res) => {
 router.get('/', auth, async (req: any, res: any) => {
     try {
         const user = await User.findById(req?.userId);
-        return res.status(200).json({ user: { username: user.username } });
+        if (user)
+            return res.status(200).json({ user: { username: user.username } });
+        return res.status(400).json({ message: 'User not found' });
     } catch (error) {
         console.log(error);
         return res.status(500).json({ message: error.message });

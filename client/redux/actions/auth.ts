@@ -29,6 +29,7 @@ export const login = (form: any) => async (dispatch: any) => {
 
         dispatch(getUser());
     } catch (error: any) {
+        console.warn(error);
         console.log(error.response.data);
         dispatch({ type: actionTypes.AUTH_FAIL, payload: error.response.data });
     }

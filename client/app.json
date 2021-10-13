@@ -30,7 +30,7 @@
 			"favicon": "./assets/favicon.png",
 			"build": {
 				"babel": {
-					"include": ["react-router-native"]
+					"include": ["react-router-native","react-native-swipeable"]
 				}
 			}
 		}

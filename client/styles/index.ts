@@ -35,6 +35,12 @@ const styles = StyleSheet.create({
 	dateBtnContainer: {
 		flexDirection: 'row',
 		justifyContent: 'space-between'
+	},
+	listItem: {
+		backgroundColor: '#e5e5e5',
+		padding: 10,
+		borderRadius: 10,
+		marginBottom: 10
 	}
 });
 

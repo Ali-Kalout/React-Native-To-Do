@@ -21,8 +21,8 @@ const Home: FC<Props> = ({ setIndex }) => {
         <View>
             <Text style={styles.title}>Hello {user?.username}</Text>
             {loading ? <Text>Loading...</Text> : error?.length > 0 ? <Text style={styles.error}>{error}</Text> : (
-                <View>
-                    {tasks?.tasks?.map((t: any, i: any) => <Task key={t?._id} task={t} />)}
+                <View style={{ marginTop: 15 }}>
+                    {tasks?.tasks?.map((t: any, i: any) => <Task key={t?._id} task={t} index={i} />)}
                 </View>
             )}
         </View>
