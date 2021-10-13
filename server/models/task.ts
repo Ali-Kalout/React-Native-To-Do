@@ -1,6 +1,12 @@
 import mongoose from 'mongoose';
 
 const taskSchema = new mongoose.Schema({
+    title: {
+        type: String,
+        required: true,
+        trim: true,
+        maxlength: 10
+    },
     description: {
         type: String,
         trim: true,
@@ -18,7 +24,8 @@ const taskSchema = new mongoose.Schema({
     },
     dueDate: {
         type: Date,
-        required: true
+        required: true,
+        default: Date.now
     }
 });
 

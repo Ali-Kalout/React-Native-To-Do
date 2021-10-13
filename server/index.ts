@@ -16,6 +16,6 @@ mongoose.connect("mongodb://localhost:27017/rn-to-do", {
     useNewUrlParser: true,
     retryWrites: true,
     w: "majority"
-} as ConnectOptions).
-    then(() => app.listen(process.env.PORT || 5000, () => console.log("Server running!")))
+} as ConnectOptions)
+    .then(() => app.listen(process.env.PORT || 5001, () => console.log("Server running!")))
     .catch(err => console.log(err));

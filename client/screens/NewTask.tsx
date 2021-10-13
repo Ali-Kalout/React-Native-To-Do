@@ -1,11 +1,19 @@
-import React, { useState, useEffect } from 'react';
-import { View, Text } from 'react-native';
+import React, { useState, useEffect, FC } from 'react';
+import { View, Text,ScrollView } from 'react-native';
 import styles from './../styles/index';
 import { TextInput, Button } from 'react-native-paper';
-import DateTimePickerModal from "react-native-modal-datetime-picker";
+import DateTimePickerModal from 'react-native-modal-datetime-picker';
+import { useDispatch } from 'react-redux';
+import { addTask } from './../redux/actions/task';
 
-const NewTask = () => {
+interface Props {
+    setIndex: any;
+};
+
+const NewTask: FC<Props> = ({ setIndex }) => {
+    const dispatch = useDispatch();
     const [description, setDescription] = useState<string>('');
+    const [title, setTitle] = useState<string>('');
     const [dueDate, setDueDate] = useState<any>('');
     const [dueTime, setDueTime] = useState<any>('');
     const [dueDateTime, setDueDateTime] = useState<any>({ date: new Date(), time: new Date() });
@@ -14,8 +22,13 @@ const NewTask = () => {
     useEffect(() => { setDueDateTime({ ...dueDateTime, time: dueTime }) }, [dueTime]);
 
     const handleSubmit = () => {
-        console.warn(description, dueDateTime);
-    };
+        dispatch(addTask({ description: description, title: title }));
+        setDescription('');
+        setDueDate('');
+        setDueTime('');
+        setDueDateTime({ date: new Date(), time: new Date() });
+        setIndex(0);
+    }
 
     // date time input
     const [isDatePickerVisible, setDatePickerVisibility] = useState<any>(false);
@@ -36,8 +49,12 @@ const NewTask = () => {
     };
 
     return (
-        <View>
+        <ScrollView keyboardShouldPersistTaps='handled'>
             <Text style={styles.title}>New Task</Text>
+            <TextInput label="Task Title" mode="outlined" value={title}
+                onChangeText={text => setTitle(text)} multiline={true}
+                style={styles.input} numberOfLines={3} maxLength={10} />
+            <Text style={styles.caption}>{title?.length} / 10</Text>
             <TextInput label="Task Description" mode="outlined" value={description}
                 onChangeText={text => setDescription(text)} multiline={true}
                 style={styles.input} numberOfLines={3} maxLength={50} />
@@ -67,7 +84,7 @@ const NewTask = () => {
                 </Text>
             </View>
             <Button style={styles.button} mode="contained" onPress={handleSubmit}>Add Task</Button>
-        </View>
+        </ScrollView>
     );
 };
 

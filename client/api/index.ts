@@ -7,7 +7,7 @@ const { manifest } = Constants;
 
 const url = (manifest && typeof manifest.packagerOpts === `object`) && manifest.packagerOpts.dev
 	? (manifest.debuggerHost && `http://${manifest.debuggerHost.split(':').shift()}:5000`)
-	: `http://localhost:5000`;
+	: `http://localhost:5001`;
 
 const API = axios.create({ baseURL: url });
 API.interceptors.request.use(async (config) => {

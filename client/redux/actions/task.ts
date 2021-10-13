@@ -14,7 +14,7 @@ export const getTasks = () => async (dispatch: any) => {
     }
 }
 
-export const addtask = (task: any) => async (dispatch: any) => {
+export const addTask = (task: any) => async (dispatch: any) => {
     try {
         const { data } = await api.addTask(task);
 

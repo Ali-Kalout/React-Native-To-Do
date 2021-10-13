@@ -5,21 +5,21 @@ import Home from './../../screens/Home';
 import NewTask from '../../screens/NewTask';
 import styles from './../../styles/index';
 
-const HomeRoute = () => (
-    <View style={styles.container}>
-        <Home />
-    </View>
-);
-
-const NewTaskRoute = () => (
-    <View style={styles.container}>
-        <NewTask />
-    </View>
-);
-
-const ProfileRoute = () => <Text>Recents</Text>;
-
 const BottomNav = () => {
+    const HomeRoute = () => (
+        <View style={styles.container}>
+            <Home setIndex={setIndex} />
+        </View>
+    );
+
+    const NewTaskRoute = () => (
+        <View style={styles.container}>
+            <NewTask setIndex={setIndex} />
+        </View>
+    );
+
+    const ProfileRoute = () => <Text>Recents</Text>;
+
     const [index, setIndex] = React.useState(0);
     const [routes] = React.useState([
         { key: 'tasks', title: 'Tasks', icon: 'menu' },

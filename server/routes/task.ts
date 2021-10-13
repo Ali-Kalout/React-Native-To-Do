@@ -16,9 +16,9 @@ router.get('/', auth, async (req: any, res: any) => {
 
 router.post('/', auth, async (req: any, res: any) => {
     try {
-        const { description, dueDate } = req.body;
+        const { description, title } = req.body;
         const userId = req?.userId;
-        const task = new Task({ description, dueDate, owner: userId });
+        const task = new Task({ title, description, owner: userId });
         await task.save();
         return res.status(201).json({ task });
     } catch (error) {
