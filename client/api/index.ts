@@ -22,3 +22,4 @@ export const signup = (form: authForm) => API.post('/users/signup', form);
 export const getUser = () => API.get('/users');
 export const getTasks = () => API.get('/tasks');
 export const addTask = (task: any) => API.post('/tasks', task);
+export const delTask = (id: any) => API.delete(`/tasks/${id}`);

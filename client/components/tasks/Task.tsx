@@ -10,10 +10,11 @@ interface Props {
         description: string;
         completed: string;
     };
-    index: any;
+    index?: any;
+    deleteTask?: any;
 }
 
-const Task: FC<Props> = ({ task, index }) => {
+const Task: FC<Props> = ({ task, deleteTask }) => {
     const [expanded, setExpanded] = React.useState(false);
     const handlePress = () => setExpanded(!expanded);
 
@@ -26,7 +27,7 @@ const Task: FC<Props> = ({ task, index }) => {
         [{
             text: "Cancel", onPress: () => { }, style: "cancel"
         },
-        { text: "OK", onPress: () => console.log("OK Pressed") }]
+        { text: "OK", onPress: () => deleteTask(task?._id) }]
     );
 
     return (
@@ -52,7 +53,7 @@ const Task: FC<Props> = ({ task, index }) => {
                 borderTopLeftRadius: !leftActionActivated ? 10 : 0,
                 borderBottomLeftRadius: !leftActionActivated ? 10 : 0,
             }]} onPress={handlePress}>
-                <Text style={{ fontWeight: '600', fontSize: 20 }}>{index + 1}&nbsp;-&nbsp;{task?.title}</Text>
+                <Text style={{ fontWeight: '600', fontSize: 20 }}>{task?.title}</Text>
                 {expanded && (
                     <View>
                         <View style={{ borderBottomColor: 'black', borderBottomWidth: 1, marginTop: 10 }} />

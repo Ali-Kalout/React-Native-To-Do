@@ -26,3 +26,16 @@ export const addTask = (task: any) => async (dispatch: any) => {
         console.log(error);
     }
 }
+
+export const delTask = (id: any) => async (dispatch: any) => {
+    try {
+        const { data } = await api.delTask(id);
+
+        dispatch({
+            type: actionTypes?.DEL_TASK,
+            payload: data
+        });
+    } catch (error) {
+        console.log(error);
+    }
+}
