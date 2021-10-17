@@ -9,7 +9,7 @@ export const task = (state = {
         case actionTypes.DEL_TASK:
             return {
                 ...state,
-                tasks: state?.tasks?.filter((task: any) => task._id !== action.payload),
+                tasks: state?.tasks?.filter((task: any) => task._id !== action.payload?.id),
                 loading: false,
                 error: ''
             };

@@ -3,11 +3,11 @@ import * as api from './../../api/index';
 
 export const getTasks = () => async (dispatch: any) => {
     try {
-        const { data } = await api.getTasks();
+        const { data }: any = await api.getTasks();
 
         dispatch({
             type: actionTypes?.GET_TASKS,
-            payload: data
+            payload: data?.tasks
         });
     } catch (error) {
         console.log(error);
