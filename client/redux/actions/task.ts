@@ -39,3 +39,16 @@ export const delTask = (id: any) => async (dispatch: any) => {
         console.log(error);
     }
 }
+
+export const toggleTask = (id: any) => async (dispatch: any) => {
+    try {
+        const { data }: any = await api.toggleTask(id);
+
+        dispatch({
+            type: actionTypes?.TOGGLE_TASK,
+            payload: data?.task
+        });
+    } catch (error) {
+        console.log(error);
+    }
+}

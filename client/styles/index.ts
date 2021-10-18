@@ -41,6 +41,17 @@ const styles = StyleSheet.create({
 		padding: 10,
 		borderRadius: 10,
 		marginBottom: 10
+	},
+	listItemCompleted: {
+		backgroundColor: '#c8c8c8',
+		padding: 10,
+		borderRadius: 10,
+		marginBottom: 10
+	},
+	listTextCompleted: {
+		textDecorationLine: 'line-through',
+		textDecorationStyle: 'solid',
+		textDecorationColor: '#fff'
 	}
 });
 

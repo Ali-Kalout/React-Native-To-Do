@@ -14,6 +14,12 @@ export const task = (state = {
                 error: ''
             };
 
+        case actionTypes.TOGGLE_TASK:
+            return {
+                ...state,
+                tasks: state?.tasks?.map((task: any) => (task?._id === action?.payload?._id ? action?.payload : task))
+            };
+
         case actionTypes.GET_TASKS:
             return { ...state, tasks: action.payload, loading: false, error: '' };
 

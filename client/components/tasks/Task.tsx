@@ -12,14 +12,18 @@ interface Props {
     };
     index?: any;
     deleteTask?: any;
+    toggleTask?: any;
 }
 
-const Task: FC<Props> = ({ task, deleteTask }) => {
+const Task: FC<Props> = ({ task, deleteTask, toggleTask }) => {
     const [expanded, setExpanded] = React.useState(false);
     const handlePress = () => setExpanded(!expanded);
 
     const [leftActionActivated, setLeftActionActivated] = React.useState(false);
     const [toggle, setToggle] = React.useState(false);
+
+    const [rightActionActivated, setRightActionActivated] = React.useState(false);
+    const [toggleRight, setToggleRight] = React.useState(false);
 
     const createTwoButtonAlert = (task: any) => Alert.alert(
         "Delete Task",
@@ -29,6 +33,8 @@ const Task: FC<Props> = ({ task, deleteTask }) => {
         },
         { text: "OK", onPress: () => deleteTask(task?._id) }]
     );
+
+    const toggleFinishTask = () => { toggleTask(task._id) }
 
     return (
         <Swipeable
@@ -48,16 +54,39 @@ const Task: FC<Props> = ({ task, deleteTask }) => {
                 setLeftActionActivated(true);
             }}
             onLeftActionDeactivate={() => setLeftActionActivated(false)}
-            onLeftActionComplete={() => setToggle(!toggle)} >
-            <TouchableOpacity style={[styles.listItem, {
-                borderTopLeftRadius: !leftActionActivated ? 10 : 0,
-                borderBottomLeftRadius: !leftActionActivated ? 10 : 0,
+            onLeftActionComplete={() => setToggle(!toggle)}
+
+            rightActionActivationDistance={200}
+            rightContent={(
+                <View style={[styles2.rightSwipeItem, {
+                    backgroundColor: rightActionActivated ? '#2196f3' : '#F6F6F6',
+                    marginBottom: 10
+                }]}>
+                    {rightActionActivated ?
+                        <Text style={{ color: 'white' }}>{task?.completed ? 'Unfinish' : 'Finish'} task!</Text> :
+                        <Text>Keep pulling to toggle finish!</Text>}
+                </View>
+            )}
+            onRightActionActivate={() => {
+                setRightActionActivated(true);
+                toggleFinishTask();
+            }}
+            onRightActionDeactivate={() => setRightActionActivated(false)}
+            onRightActionComplete={() => setToggleRight(!toggleRight)}
+        >
+            <TouchableOpacity style={[task?.completed ? styles?.listItemCompleted : styles.listItem, {
+                borderTopRightRadius: !rightActionActivated ? 10 : 0,
+                borderBottomRightRadius: !rightActionActivated ? 10 : 0,
             }]} onPress={handlePress}>
-                <Text style={{ fontWeight: '600', fontSize: 20 }}>{task?.title}</Text>
+                <Text style={[task?.completed && styles?.listTextCompleted, { fontWeight: '600', fontSize: 20 }]}>
+                    {task?.title}
+                </Text>
                 {expanded && (
                     <View>
                         <View style={{ borderBottomColor: 'black', borderBottomWidth: 1, marginTop: 10 }} />
-                        <Text style={{ fontSize: 16, marginTop: 15 }}>{task?.description}</Text>
+                        <Text style={[task?.completed && styles?.listTextCompleted, { fontSize: 16, marginTop: 15 }]}>
+                            {task?.description}
+                        </Text>
                     </View>
                 )}
             </TouchableOpacity>
@@ -85,8 +114,8 @@ const styles2 = StyleSheet.create({
     },
     rightSwipeItem: {
         flex: 1,
+        alignItems: 'flex-start',
         justifyContent: 'center',
         paddingLeft: 20
-    },
-
+    }
 });
