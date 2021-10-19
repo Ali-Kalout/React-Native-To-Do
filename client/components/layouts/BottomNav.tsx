@@ -3,6 +3,7 @@ import { View } from 'react-native';
 import { BottomNavigation, Text } from 'react-native-paper';
 import Home from './../../screens/Home';
 import NewTask from '../../screens/NewTask';
+import Profile from '../../screens/Profile';
 import styles from './../../styles/index';
 
 const BottomNav = () => {
@@ -18,7 +19,11 @@ const BottomNav = () => {
         </View>
     );
 
-    const ProfileRoute = () => <Text>Recents</Text>;
+    const ProfileRoute = () => (
+        <View style={styles.container}>
+            <Profile setIndex={setIndex} />
+        </View>
+    );
 
     const [index, setIndex] = React.useState(0);
     const [routes] = React.useState([

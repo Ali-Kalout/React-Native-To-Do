@@ -53,3 +53,17 @@ export const signup = (form: any) => async (dispatch: any) => {
         dispatch({ type: actionTypes.AUTH_FAIL, payload: error.response.data });
     }
 }
+
+export const editUser = (form: any) => async (dispatch: any) => {
+    try {
+        const { data } = await api.editUser(form);
+
+        dispatch({
+            type: actionTypes?.EDIT_USER,
+            payload: data?.user
+        });
+    } catch (error: any) {
+        console.log(error.response.data?.message);
+        dispatch({ type: actionTypes.AUTH_FAIL, payload: error.response.data?.message });
+    }
+}

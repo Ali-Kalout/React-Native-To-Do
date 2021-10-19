@@ -64,4 +64,28 @@ router.get('/', auth, async (req: any, res: any) => {
     }
 });
 
+router.patch('/', auth, async (req: any, res: any) => {
+    try {
+        const { username, newPassword, oldPassword } = req.body;
+        const user = await User.findById(req?.userId);
+        if (user) {
+            if (username) {
+                const isMatch = await bcrypt.compare(oldPassword, user?.password);
+
+                if (isMatch) user.username = username;
+                else return res.status(400).json({ message: "Invalid password" });
+
+                if (newPassword?.length > 0)
+                    user.password = await bcrypt.hash(newPassword, await bcrypt.genSalt(10));
+            }
+            await user.save();
+            return res.status(200).json({ user: { username: user.username } });
+        }
+        return res.status(400).json({ message: 'User not found' });
+    } catch (error) {
+        console.log(error);
+        return res.status(500).json({ message: error.message });
+    }
+});
+
 export default router;

@@ -16,7 +16,7 @@ const store = configStore();
 
 const App = () => {
 	const dispatch = useDispatch();
-	const { isAuthenticated } = useSelector((state: RootState) => state.auth);
+	const { isAuthenticated, user } = useSelector((state: RootState) => state.auth);
 
 	useEffect(() => { dispatch(getUser() as any) }, []);
 
@@ -24,7 +24,7 @@ const App = () => {
 		<View style={styles.body}>
 			<NavBar />
 
-			{isAuthenticated ? (
+			{(isAuthenticated && user) ? (
 				<BottomNav />
 			) : (
 				<View style={styles.container}>

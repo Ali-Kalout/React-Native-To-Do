@@ -24,3 +24,4 @@ export const getTasks = () => API.get('/tasks');
 export const addTask = (task: any) => API.post('/tasks', task);
 export const delTask = (id: any) => API.delete(`/tasks/${id}`);
 export const toggleTask = (id: any) => API.patch(`/tasks/${id}/toggle`);
+export const editUser = (form: any) => API.patch('/users', form);

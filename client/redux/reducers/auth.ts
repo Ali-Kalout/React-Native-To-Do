@@ -23,6 +23,9 @@ export const auth = (state = {
         case actionTypes?.LOGOUT:
             return { ...state, isAuthenticated: false, loading: false, error: '' };
 
+        case actionTypes?.EDIT_USER:
+            return { ...state, user: action.payload, isAuthenticated: true, loading: false, error: '' };
+
         default:
             return state;
     }

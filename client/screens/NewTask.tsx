@@ -58,7 +58,7 @@ const NewTask: FC<Props> = ({ setIndex }) => {
                 onChangeText={text => setDescription(text)} multiline={true}
                 style={styles.input} numberOfLines={3} maxLength={50} />
             <Text style={styles.caption}>{description?.length} / 50</Text>
-            <View style={styles.dateBtnContainer}>
+            {/* <View style={styles.dateBtnContainer}>
                 <Button style={styles.button} mode="contained" onPress={showDatePicker}>Add Due Date</Button>
                 <Button style={styles.button} mode="contained" onPress={showTimePicker}>Add Due Time</Button>
             </View>
@@ -81,7 +81,7 @@ const NewTask: FC<Props> = ({ setIndex }) => {
                     &nbsp;-&nbsp;
                     {dueDateTime?.time && dueDateTime?.time?.getHours() + ":" + dueDateTime?.time?.getMinutes()}
                 </Text>
-            </View>
+            </View> */}
             <Button style={styles.button} mode="contained" onPress={handleSubmit}>Add Task</Button>
         </ScrollView>
     );
